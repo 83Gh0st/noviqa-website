@@ -1,0 +1,21 @@
+import Hero from "@/components/Hero";
+import StatsStrip from "@/components/StatsStrip";
+import Services from "@/components/Services";
+import Industries from "@/components/Industries";
+import ProcessSteps from "@/components/ProcessSteps";
+import WhyChoose from "@/components/WhyChoose";
+import CTASection from "@/components/CTASection";
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+      <StatsStrip />
+      <Services />
+      <Industries />
+      <ProcessSteps />
+      <WhyChoose />
+      <CTASection />
+    </>
+  );
+}
