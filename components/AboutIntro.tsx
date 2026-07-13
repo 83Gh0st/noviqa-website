@@ -49,7 +49,7 @@ export default function AboutIntro() {
                 <p className="mt-3 text-mist text-[0.95rem] leading-relaxed">
                   To be the most trusted partner for businesses in managing
                   receivables and claims, recognized for our integrity,
-                  professionalism, and commitment to improving our clients'
+                  professionalism, and commitment to improving our client's
                   cash flow and financial stability.
                 </p>
               </div>

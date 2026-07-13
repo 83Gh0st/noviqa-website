@@ -27,7 +27,7 @@ export default function Industries() {
               </h2>
             </div>
             <p className="text-ink-soft max-w-sm leading-relaxed text-[0.95rem] sm:text-base">
-              Our founders' background spans banking, construction, oil &amp;
+              Our founder's background spans banking, construction, oil &amp;
               gas, and energy, giving us a working understanding of how
               receivables behave in each.
             </p>
