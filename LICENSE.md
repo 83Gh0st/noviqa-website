@@ -14,5 +14,5 @@ without prior written permission from the copyright holder.
 Ownership of the source code, architecture, reusable components, and intellectual
 property remains with the author.
 
-Website content, logos, trademarks, and branding belong to Noviqa Management
+Website content, logos,  trademarks, and branding belong to Noviqa Management
 Services LLC.
