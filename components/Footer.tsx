@@ -70,7 +70,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Noviqa Management Services LLC. All rights reserved.
           </p>
           <p className="text-mist/50 text-xs">
-            We do not provide legal representation or financial advisory services.
+            We do not provide financial advisory services.
           </p>
         </div>
       </div>

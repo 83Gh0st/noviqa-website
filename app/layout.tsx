@@ -23,19 +23,19 @@ export const metadata: Metadata = {
     template: "%s | Noviqa Management Services",
   },
   description:
-    "Noviqa Management Services LLC helps businesses in the UAE strengthen cash flow through structured receivables management, claims coordination, and professional debt recovery support. Meydan Free Zone, Dubai.",
+    "Noviqa Management Services LLC helps businesses across the GCC strengthen cash flow through structured receivables management, claims coordination, and professional debt recovery support. Meydan Free Zone, Dubai.",
   keywords: [
     "receivables management Dubai",
-    "debt recovery UAE",
+    "debt recovery GCC",
     "claims coordination Dubai",
-    "commercial collections UAE",
+    "commercial collections GCC",
     "DSO reduction",
     "Noviqa",
   ],
   openGraph: {
     title: "Noviqa Management Services LLC",
     description:
-      "Improving Cash Flow. Preserving Relationships. Structured receivables management and claims coordination for businesses across the UAE.",
+      "Improving Cash Flow. Preserving Relationships. Structured receivables management and claims coordination for businesses across the GCC.",
     url: "https://www.noviqa.ae",
     siteName: "Noviqa Management Services",
     locale: "en_AE",

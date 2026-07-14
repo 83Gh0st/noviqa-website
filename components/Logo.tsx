@@ -21,6 +21,7 @@ export default function Logo({
 }) {
   const wordColor = variant === "light" ? "text-ivory" : "text-navy";
   const subColor = variant === "light" ? "text-mist" : "text-ink-soft";
+  const qBase = variant === "light" ? "#F7F4EE" : "#0A1B33";
 
   return (
     <div className={cx("group flex items-center gap-3", className)}>
@@ -47,7 +48,16 @@ export default function Logo({
       </span>
       <div className="flex flex-col leading-none">
         <span className={cx("font-display text-[1.15rem] tracking-[0.14em] font-medium", wordColor)}>
-          NOVIQA
+          NOVI
+          <span
+            className="bg-clip-text text-transparent"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${qBase} 0%, ${qBase} 55%, #2FA759 78%, #155E38 100%)`,
+            }}
+          >
+            Q
+          </span>
+          A
         </span>
         <span className={cx("font-mono text-[0.5rem] tracking-[0.32em] uppercase mt-1", subColor)}>
           Management Services

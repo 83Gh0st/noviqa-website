@@ -2,7 +2,7 @@ import { ShieldCheck } from "lucide-react";
 import Reveal from "./Reveal";
 
 const points = [
-  "We adhere to all applicable UAE laws and regulations related to data protection and business conduct.",
+  "We adhere to all applicable laws and regulations related to data protection and business conduct.",
   "We maintain strict confidentiality and data security standards throughout every engagement.",
   "We operate within clear ethical and professional boundaries to protect your brand and customer relationships.",
 ];

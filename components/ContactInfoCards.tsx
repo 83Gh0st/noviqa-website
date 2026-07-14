@@ -23,7 +23,7 @@ const cards = [
   {
     icon: Clock,
     label: "Hours",
-    value: "Sun – Thu, 9:00 AM – 6:00 PM (GST)",
+    value: "Mon – Fri, 8:00 AM – 5:00 PM (GST)",
   },
 ];
 

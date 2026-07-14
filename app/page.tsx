@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import ProcessSteps from "@/components/ProcessSteps";
 import WhyChoose from "@/components/WhyChoose";
+import RegionalCoverage from "@/components/RegionalCoverage";
 import CTASection from "@/components/CTASection";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Industries />
       <ProcessSteps />
       <WhyChoose />
+      <RegionalCoverage />
       <CTASection />
     </>
   );

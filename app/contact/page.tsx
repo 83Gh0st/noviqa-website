@@ -31,7 +31,7 @@ export default function ContactPage() {
               </h2>
               <p className="mt-3 sm:mt-4 text-ink-soft leading-relaxed max-w-md text-[0.95rem] sm:text-base">
                 We're based in Meydan Free Zone, Dubai, and work with clients
-                across the UAE. Reach out directly, or use the form and we'll
+                across the GCC. Reach out directly, or use the form and we'll
                 come back to you.
               </p>
             </Reveal>

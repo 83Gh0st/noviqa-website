@@ -7,7 +7,7 @@ import Reveal from "./Reveal";
 
 const stats = [
   { to: 13, suffix: "+", label: "Years of hands-on credit control & recovery experience" },
-  { to: 6, suffix: "", label: "Industry sectors served across the UAE" },
+  { to: 6, suffix: "", label: "Industry sectors served across the GCC" },
   { to: 4, suffix: "", label: "Core service lines, engaged independently or together" },
   { to: 5, suffix: "-step", label: "Structured process, from onboarding to reporting" },
 ];

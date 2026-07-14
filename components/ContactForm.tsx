@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle2, ArrowUpRight } from "lucide-react";
 
@@ -17,6 +17,11 @@ type Status = "idle" | "loading" | "success" | "error";
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const renderedAt = useRef(Date.now());
+
+  useEffect(() => {
+    renderedAt.current = Date.now();
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,6 +30,7 @@ export default function ContactForm() {
 
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+    data.ts = String(renderedAt.current);
 
     try {
       const res = await fetch("/api/contact", {
@@ -71,13 +77,25 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+      {/* Honeypot — hidden from real visitors (off-screen, not display:none
+          so it still "renders" for simple scripted bots that skip
+          display:none fields), never intended to be filled in by a human.
+          If it comes back non-empty, the submission is treated as spam. */}
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+      >
+        <label htmlFor="website">Leave this field empty</label>
+        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
-        <Field label="Full name" name="name" required autoComplete="name" />
-        <Field label="Company name" name="company" autoComplete="organization" />
+        <Field label="Full name" name="name" required autoComplete="name" maxLength={100} />
+        <Field label="Company name" name="company" autoComplete="organization" maxLength={100} />
       </div>
       <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
-        <Field label="Email" name="email" type="email" required autoComplete="email" />
-        <Field label="Phone" name="phone" type="tel" autoComplete="tel" />
+        <Field label="Email" name="email" type="email" required autoComplete="email" maxLength={254} />
+        <Field label="Phone" name="phone" type="tel" autoComplete="tel" maxLength={30} />
       </div>
 
       <div>
@@ -110,6 +128,7 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
+          maxLength={5000}
           placeholder="e.g. approximate outstanding amount, number of accounts, how long they've been overdue..."
           className="w-full bg-paper border border-navy/15 rounded-sm px-4 py-3 text-sm text-ink placeholder:text-ink-soft/50 focus:border-emerald outline-none transition-colors resize-none"
         />
@@ -155,12 +174,14 @@ function Field({
   type = "text",
   required,
   autoComplete,
+  maxLength,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   autoComplete?: string;
+  maxLength?: number;
 }) {
   return (
     <div>
@@ -174,6 +195,7 @@ function Field({
         type={type}
         required={required}
         autoComplete={autoComplete}
+        maxLength={maxLength}
         className="w-full bg-paper border border-navy/15 rounded-sm px-4 py-3 text-sm text-ink focus:border-emerald outline-none transition-colors"
       />
     </div>
