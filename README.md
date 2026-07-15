@@ -1,4 +1,4 @@
-# Noviqa Management Services — Website
+# Noviqa Management Services - Website
 
 A premium, mobile-first marketing website for Noviqa Management Services LLC, built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Includes three pages — Home, About Us, Contact — a working contact form API route, a WhatsApp click-to-chat button, and is ready to deploy to **Vercel**.
 
@@ -62,16 +62,16 @@ To change **contact details** (email, phone, WhatsApp), edit the single file `li
 
 ## 4. A note on design system & colors
 
-The palette, fonts, and spacing all come from `tailwind.config.ts`, sampled directly from Noviqa's logo file: deep navy and a single emerald-green accent, paired with a serif display face (Fraunces) and a clean sans body face (Inter). If you'd like a color adjusted (e.g. a lighter navy, or a different green), that's the one file to change — every component pulls from those same tokens, so updates apply site-wide automatically.
+The palette, fonts, and spacing all come from `tailwind.config.ts`, sampled directly from Noviqa's logo file: deep navy and a single emerald-green accent, paired with a serif display face (Fraunces) and a clean sans body face (Inter). To adjust a color (e.g. a lighter navy, or a different green), that's the one file to change — every component pulls from those same tokens, so updates apply site-wide automatically.
 
-The logo itself lives in `public/` as three files generated from the logo image you provided:
+The logo itself lives in `public/` as three files generated from the logo image provided:
 - `logo-mark.png` — the mark with its navy background removed, used in the Nav and Footer (which are always on a navy surface)
 - `logo-badge.png` — the mark with its navy background intact, used as a fallback for any future light-background placement
 - `app/icon.png` — the browser tab favicon
 
-If you get a proper vector export (SVG/AI/EPS) of the logo later, replacing these three files with equivalents (same filenames) is all that's needed — no component code has to change.
+If a vector export (SVG/AI/EPS) of the logo becomes available later, replacing these three files with equivalents (same filenames) is all that's needed — no component code has to change.
 
-**Photography:** the Hero, page headers, and several sections use real photography (Dubai skyline, office/meeting shots) sourced from Unsplash under the [Unsplash License](https://unsplash.com/license) — free for commercial use, no attribution required. The photo IDs are defined once in `lib/images.ts` and loaded through `next/image` (see `next.config.mjs` for the allowed remote host). To swap any photo for your own, drop a file in `public/images/`, point the relevant component at `/images/your-file.jpg`, and remove that entry from `lib/images.ts` if nothing else uses it.
+**Photography:** the Hero, page headers, and several sections use real photography (Dubai skyline, office/meeting shots) sourced from Unsplash under the [Unsplash License](https://unsplash.com/license) — free for commercial use, no attribution required. The photo IDs are defined once in `lib/images.ts` and loaded through `next/image` (see `next.config.mjs` for the allowed remote host). To swap any photo for a custom one, drop a file in `public/images/`, point the relevant component at `/images/your-file.jpg`, and remove that entry from `lib/images.ts` if nothing else uses it.
 
 ---
 
@@ -98,13 +98,13 @@ Vercel is built by the makers of Next.js and is the simplest way to host this pr
 1. Go to [vercel.com](https://vercel.com) and sign up/log in (using your GitHub account makes this seamless).
 2. Click **Add New → Project**.
 3. Select the `noviqa-website` repository you just pushed and click **Import**.
-4. Vercel auto-detects Next.js — you don't need to change any build settings.
-5. Before clicking Deploy, open **Environment Variables** and add the variables from Step 7 below (you can also add these later and redeploy).
+4. Vercel auto-detects Next.js — no build settings need to change.
+5. Before clicking Deploy, open **Environment Variables** and add the variables from Step 7 below (these can also be added later and the project redeployed).
 6. Click **Deploy**. In about a minute you'll get a live URL like `noviqa-website.vercel.app` — test it thoroughly before moving to the custom domain.
 
 ---
 
-## 6. Before you go live: replace the placeholder details
+## 6. Before going live: replace the placeholder details
 
 Open `lib/utils.ts` and update:
 
@@ -127,7 +127,7 @@ Right now, form submissions are logged but not emailed anywhere. The code is alr
 
 1. Create a free account at [resend.com](https://resend.com).
 2. In Resend, go to **Domains → Add Domain** and add `noviqa.ae`. It will give you a few DNS records (TXT/MX/CNAME) to verify ownership.
-3. Add those records at your DNS provider — see Step 8 below for where that is (tasjeel.ae) — this is a separate step from the domain-pointing DNS records, so you'll be adding records twice in the same place, once for the domain to point to Vercel, once for Resend to verify and send email.
+3. Add those records at your DNS provider — see Step 8 below for where that is (tasjeel.ae) — this is a separate step from the domain-pointing DNS records, so records get added twice in the same place: once for the domain to point to Vercel, once for Resend to verify and send email.
 4. Once verified in Resend, go to **API Keys → Create API Key** and copy it.
 5. In your Vercel project, go to **Settings → Environment Variables** and add:
    | Name | Value |
@@ -136,41 +136,41 @@ Right now, form submissions are logged but not emailed anywhere. The code is alr
    | `CONTACT_TO_EMAIL` | the mailbox that should receive enquiries, e.g. `info@noviqa.ae` |
    | `CONTACT_FROM_EMAIL` | `Noviqa Website <noreply@noviqa.ae>` |
 6. Redeploy (Vercel → Deployments → ⋯ → Redeploy) so the new variables take effect.
-7. Test the live contact form — you should receive an email at the address in `CONTACT_TO_EMAIL`, with reply-to set to whoever filled out the form.
+7. Test the live contact form — an email should arrive at the address in `CONTACT_TO_EMAIL`, with reply-to set to whoever filled out the form.
 
-For local testing, copy `.env.example` to `.env.local` and fill in the same values if you want to test real email delivery from your own machine.
+For local testing, copy `.env.example` to `.env.local` and fill in the same values to test real email delivery from your own machine.
 
 ---
 
-## 8. Connecting your domain (noviqa.ae) — hosted at tasjeel.ae
+## 8. Connecting the domain (noviqa.ae) — hosted at tasjeel.ae
 
-Your domain's DNS is managed through your registrar's panel at **tasjeel.ae**. Domain hosting (where the domain is *registered*) and website hosting (where the *site* actually runs, i.e. Vercel) are two different things — you don't need to move the domain anywhere, you just point it at Vercel using DNS records.
+The domain's DNS is managed through the registrar's panel at **tasjeel.ae**. Domain hosting (where the domain is *registered*) and website hosting (where the *site* actually runs, i.e. Vercel) are two different things — the domain doesn't need to move anywhere, it just needs to be pointed at Vercel using DNS records.
 
-1. In Vercel, open your project → **Settings → Domains** → enter `www.noviqa.ae` (and `noviqa.ae`) → **Add**.
-2. Vercel will show you the exact DNS records to add — typically:
+1. In Vercel, open the project → **Settings → Domains** → enter `www.noviqa.ae` (and `noviqa.ae`) → **Add**.
+2. Vercel will show the exact DNS records to add — typically:
    - An **A record** for the root domain (`noviqa.ae`) pointing to Vercel's IP (`76.76.21.21`)
    - A **CNAME record** for `www` pointing to `cname.vercel-dns.com`
-   (Vercel's screen will show the current, correct values — use those over any example here, as they're occasionally updated.)
-3. Log in to your account at **tasjeel.ae**, find the DNS management section for your domain (sometimes labeled "DNS Zone," "Nameservers," or "Manage DNS").
+   (Vercel's screen shows the current, correct values — use those over any example here, as they're occasionally updated.)
+3. Log in to the account at **tasjeel.ae**, find the DNS management section for the domain (sometimes labeled "DNS Zone," "Nameservers," or "Manage DNS").
 4. Add the records exactly as shown in Vercel.
 5. DNS changes can take anywhere from a few minutes to 24–48 hours to propagate. Vercel's Domains page will show a green checkmark once it detects the records correctly.
-6. Since tasjeel.ae's control panel isn't something I have direct visibility into, if you can't find the DNS settings, their support team can point you to the right section — just ask them to help you "add an A record and a CNAME record for an external host."
+6. If the DNS settings are hard to find in the tasjeel.ae panel, their support team can point to the right section — just ask them to help "add an A record and a CNAME record for an external host."
 
 ---
 
-## 9. Setting up your professional mailbox (info@noviqa.ae)
+## 9. Setting up the professional mailbox (info@noviqa.ae)
 
 A website domain does not automatically come with email inboxes — mailbox hosting is a separate service. Since the quotation includes mailbox setup, here are the common ways to get `info@noviqa.ae` (or similar) working:
 
-**Option A — Ask tasjeel.ae directly.** Many UAE domain registrars offer email hosting as an add-on. This is often the simplest option since it's the same provider and support line you already have a relationship with.
+**Option A — Ask tasjeel.ae directly.** Many UAE domain registrars offer email hosting as an add-on. This is often the simplest option since it's the same provider and support line already in use.
 
 **Option B — Google Workspace** (Gmail with your own domain): plans start at a low monthly cost per mailbox. Sign up at [workspace.google.com](https://workspace.google.com), verify domain ownership, and follow their setup wizard to add MX records at tasjeel.ae.
 
 **Option C — Zoho Mail:** has a genuinely free tier for a small number of users on your own domain — a good low-cost option to start. Sign up at [zoho.com/mail](https://www.zoho.com/mail/), verify the domain, and add the MX/TXT records they provide at tasjeel.ae.
 
-Whichever option you choose, the pattern is the same: the provider gives you a set of **MX records** (and sometimes TXT/SPF/DKIM records for deliverability), and you add those at tasjeel.ae's DNS panel — the same place you added the Vercel records in Step 8, just a different set of records for mail instead of web traffic.
+Whichever option is chosen, the pattern is the same: the provider gives a set of **MX records** (and sometimes TXT/SPF/DKIM records for deliverability), added at tasjeel.ae's DNS panel — the same place the Vercel records were added in Step 8, just a different set of records for mail instead of web traffic.
 
-Once your mailbox is live, update `CONTACT_TO_EMAIL` (Step 7) and `lib/utils.ts` (Step 6) to the real address, and redeploy.
+Once the mailbox is live, update `CONTACT_TO_EMAIL` (Step 7) and `lib/utils.ts` (Step 6) to the real address, and redeploy.
 
 ---
 
