@@ -67,10 +67,9 @@ function escapeHtml(value: string) {
 
 // Strips CR/LF and other control characters so nothing in these fields can
 // break out of its intended slot — most importantly the subject line, which
-// is built from `name`/`company` via string interpolation. Resend's API
-// takes JSON rather than a raw SMTP header block, but stripping control
-// characters here is a cheap, defensive extra layer regardless of how the
-// provider's API handles it internally.
+// is built from `name`/`company` via string interpolation. This matters more
+// with a raw SMTP send than it did with Resend's JSON API, since unescaped
+// CR/LF in a header value is the classic SMTP header-injection vector.
 function sanitize(value: string, maxLen: number) {
   return value.replace(/[\r\n\t\x00-\x1F\x7F]/g, " ").trim().slice(0, maxLen);
 }
@@ -155,9 +154,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const to = process.env.CONTACT_TO_EMAIL || "info@noviqa.ae";
-    const from = process.env.CONTACT_FROM_EMAIL || "Noviqa Website <onboarding@resend.dev>";
-    const apiKey = process.env.RESEND_API_KEY;
+    // Zoho requires the "From" address to match the authenticated mailbox
+    // (or a verified alias of it) — unlike Resend, you can't send as an
+    // arbitrary noreply@ address on the domain.
+    const zohoUser = process.env.ZOHO_SMTP_USER; // e.g. info@noviqa.ae
+    const zohoPass = process.env.ZOHO_SMTP_PASS; // Zoho app-specific password
+    const zohoHost = process.env.ZOHO_SMTP_HOST || "smtppro.zoho.com"; // smtppro.zoho.eu / .in / .com.au etc. if your account is on a different Zoho data center
+    const zohoPort = Number(process.env.ZOHO_SMTP_PORT) || 587;
+    const to = process.env.CONTACT_TO_EMAIL || zohoUser;
 
     const html = `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -172,10 +176,10 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    if (!apiKey) {
-      // No email provider configured yet — log so nothing is lost during local
-      // testing, and let the form still report success to the user.
-      console.log("[contact] RESEND_API_KEY not set — submission received:", {
+    if (!zohoUser || !zohoPass) {
+      // No mailbox credentials configured yet — log so nothing is lost during
+      // local testing, and let the form still report success to the user.
+      console.log("[contact] ZOHO_SMTP_USER/ZOHO_SMTP_PASS not set — submission received:", {
         name,
         company,
         email,
@@ -186,19 +190,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: true, delivered: false });
     }
 
-    const { Resend } = await import("resend");
-    const resend = new Resend(apiKey);
-
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: email,
-      subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,
-      html,
+    const { default: nodemailer } = await import("nodemailer");
+    const transporter = nodemailer.createTransport({
+      host: zohoHost,
+      port: zohoPort,
+      secure: zohoPort === 465, // true for port 465 (SSL), false for 587 (STARTTLS)
+      auth: { user: zohoUser, pass: zohoPass },
     });
 
-    if (error) {
-      console.error("[contact] Resend error:", error);
+    try {
+      await transporter.sendMail({
+        from: `"Noviqa Website" <${zohoUser}>`,
+        to,
+        replyTo: email,
+        subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,
+        html,
+      });
+    } catch (sendError) {
+      console.error("[contact] Zoho SMTP error:", sendError);
       return NextResponse.json(
         { error: "We couldn't send your message right now. Please try emailing us directly." },
         { status: 502 }
