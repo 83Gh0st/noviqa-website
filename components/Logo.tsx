@@ -41,10 +41,10 @@ export default function Logo({
 <Image
   src="/noviqa.svg"
   alt="NOVIQA"
-  width={1080}
-  height={1080}
+  width={240}
+  height={32}
   priority
-  className="h-8 w-auto object-contain"
+  className="-ml-2 block h-5 w-auto"
 />
 
         <span
