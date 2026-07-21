@@ -6,6 +6,7 @@ import ProcessSteps from "@/components/ProcessSteps";
 import WhyChoose from "@/components/WhyChoose";
 import RegionalCoverage from "@/components/RegionalCoverage";
 import CTASection from "@/components/CTASection";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function HomePage() {
   return (
