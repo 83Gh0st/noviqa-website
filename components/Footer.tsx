@@ -61,6 +61,18 @@ export default function Footer() {
                   {siteConfig.phoneDisplay}
                 </a>
               </li>
+              <li className="flex items-center gap-2.5 text-ivory/80 text-sm">
+  <Phone className="w-4 h-4 shrink-0 text-emerald-bright" />
+  <a href="tel:+971549946772" className="hover:text-emerald-bright transition-colors">
+    +971 54 994 6772
+  </a>
+</li>
+<li className="flex items-center gap-2.5 text-ivory/80 text-sm">
+  <Phone className="w-4 h-4 shrink-0 text-emerald-bright" />
+  <a href="tel:+971549947576" className="hover:text-emerald-bright transition-colors">
+    +971 54 994 7576
+  </a>
+</li>
             </ul>
           </div>
         </div>
