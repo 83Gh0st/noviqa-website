@@ -15,6 +15,18 @@ const cards = [
     href: `mailto:${siteConfig.email}`,
   },
   {
+    icon: Mail,
+    label: "Email (Business Enquiry)",
+    value: siteConfig.emailBusiness,
+    href: `mailto:${siteConfig.emailBusiness}`,
+  },
+  {
+    icon: Mail,
+    label: "Email (Collections)",
+    value: siteConfig.emailCollections,
+    href: `mailto:${siteConfig.emailCollections}`,
+  },
+  {
     icon: Phone,
     label: "Phone",
     value: siteConfig.phoneDisplay,

@@ -56,6 +56,18 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-ivory/80 text-sm">
+                <Mail className="w-4 h-4 shrink-0 text-emerald-bright" />
+                <a href={`mailto:${siteConfig.emailBusiness}`} className="hover:text-emerald-bright transition-colors">
+                  {siteConfig.emailBusiness}
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5 text-ivory/80 text-sm">
+                <Mail className="w-4 h-4 shrink-0 text-emerald-bright" />
+                <a href={`mailto:${siteConfig.emailCollections}`} className="hover:text-emerald-bright transition-colors">
+                  {siteConfig.emailCollections}
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5 text-ivory/80 text-sm">
                 <Phone className="w-4 h-4 shrink-0 text-emerald-bright" />
                 <a href={`tel:${siteConfig.phoneHref}`} className="hover:text-emerald-bright transition-colors">
                   {siteConfig.phoneDisplay}

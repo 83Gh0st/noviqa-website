@@ -8,6 +8,8 @@ export const siteConfig = {
   tagline: "Improving Cash Flow. Preserving Relationships.",
   domain: "www.noviqa.ae",
   email: "info@noviqa.ae",
+  emailBusiness: "bdm@noviqa.ae",
+  emailCollections: "collections@noviqa.ae",
   phoneDisplay: "+971 54 994 6771",
   phoneHref: "+971549946771",
   whatsapp: "971549946771",
