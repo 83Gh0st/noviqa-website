@@ -41,8 +41,8 @@ const cards = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+971 54 994 7576",
-    href: "tel:+971549947576",
+    value: "+971 54 994 7565",
+    href: "tel:+971549947565",
   },
   {
     icon: Clock,
